@@ -9,7 +9,7 @@ class AppTextTheme {
   static String get getInter => 'Inter';
 
   static final text12 = TextStyle(
-    color: AppColors.black,
+    color: black,
     fontSize: 12,
     letterSpacing: -.24,
     overflow: defaultOverflow,
@@ -18,7 +18,7 @@ class AppTextTheme {
     decoration: TextDecoration.none,
   );
   static final text14 = TextStyle(
-    color: AppColors.black,
+    color: black,
     fontSize: 14,
     letterSpacing: -.24,
     overflow: defaultOverflow,
@@ -27,7 +27,7 @@ class AppTextTheme {
     decoration: TextDecoration.none,
   );
   static final text15 = TextStyle(
-    color: AppColors.black,
+    color: black,
     fontSize: 16,
     letterSpacing: -.24,
     overflow: defaultOverflow,
@@ -37,7 +37,7 @@ class AppTextTheme {
   );
 
   static final text16 = TextStyle(
-    color: AppColors.black,
+    color: black,
     fontSize: 16,
     letterSpacing: -.24,
     overflow: defaultOverflow,
@@ -47,7 +47,7 @@ class AppTextTheme {
   );
 
   static final text18 = TextStyle(
-    color: AppColors.black,
+    color: black,
     fontSize: 18,
     letterSpacing: -.24,
     overflow: defaultOverflow,
@@ -57,7 +57,7 @@ class AppTextTheme {
   );
 
   static final text22 = TextStyle(
-    color: AppColors.black,
+    color: black,
     fontSize: 22,
     letterSpacing: -.24,
     overflow: defaultOverflow,
@@ -67,7 +67,7 @@ class AppTextTheme {
   );
 
   static final text24 = TextStyle(
-    color: AppColors.black,
+    color: black,
     fontSize: 24,
     letterSpacing: -.24,
     overflow: defaultOverflow,

@@ -4,6 +4,7 @@ import 'package:instagramc/core/responsive/mobile_screen_layout.dart';
 import 'package:instagramc/core/responsive/responsive_layout.dart';
 import 'package:instagramc/core/responsive/web_screen_layout.dart';
 import 'package:instagramc/core/utils/design_utils.dart';
+import 'package:instagramc/feature/startUp/screen/login_screen.dart';
 
 import 'core/server/firebase_options.dart';
 
@@ -27,10 +28,11 @@ class MyApp extends StatelessWidget {
       title: 'Instagram Clone',
       theme: ThemeData.dark()
           .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
-      home: const ResponsiveLayout(
-        mobileScreenLayout: MobileScreenLayout(),
-        webScreenLayout: WebScreenLayout(),
-      ),
+      // home: const ResponsiveLayout(
+      //   mobileScreenLayout: MobileScreenLayout(),
+      //   webScreenLayout: WebScreenLayout(),
+      // ),
+      home: LoginScreen(),
     );
   }
 }

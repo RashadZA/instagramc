@@ -24,3 +24,12 @@ class AppIcons {
   static const String polygon = '$iconPath/Polygon.svg';
 
 }
+
+class AppLogos {
+  AppLogos._();
+
+  static const String logoPath = 'assets/logo';
+
+  static const String instagram = '$logoPath/instagram.svg';
+
+}

@@ -13,22 +13,22 @@ class AppTheme {
     useMaterial3: true,
     primaryColor: primaryColor,
     primaryColorLight: primaryColor,
-    splashColor: AppColors.transparent,
-    scaffoldBackgroundColor: AppColors.backgroundColor,
+    splashColor: transparent,
+    scaffoldBackgroundColor: mobileBackgroundColor,
     hintColor: primaryColor.withOpacity(.4),
     iconTheme: const IconThemeData(size: defaultIconSize),
     appBarTheme: AppBarTheme(
       elevation: defaultElevation,
       toolbarHeight: appBarHeight,
       titleTextStyle: AppTextTheme.text16
-          .copyWith(color: AppColors.white, fontWeight: FontWeight.w600),
-      backgroundColor: AppColors.transparent,
+          .copyWith(color: white, fontWeight: FontWeight.w600),
+      backgroundColor: transparent,
     ),
     textSelectionTheme: const TextSelectionThemeData(cursorColor: primaryColor),
     cupertinoOverrideTheme: NoDefaultCupertinoThemeData(
       primaryColor: primaryColor,
-      barBackgroundColor: AppColors.primaryShadowColor,
-      scaffoldBackgroundColor: AppColors.primaryShadowColor,
+      barBackgroundColor: primaryShadowColor,
+      scaffoldBackgroundColor: primaryShadowColor,
       textTheme: CupertinoTextThemeData(
         textStyle: AppTextTheme.text14,
         primaryColor: primaryColor,
