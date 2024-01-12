@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagramc/core/utils/design_utils.dart';
+import 'package:instagramc/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class ResponsiveLayout extends StatefulWidget {
   final Widget mobileScreenLayout;
@@ -22,9 +24,8 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   }
 
   addData() async {
-    // UserProvider userProvider =
-    //     Provider.of<UserProvider>(context, listen: false);
-    // await userProvider.refreshUser();
+       await Provider.of<UserProvider>(context, listen: false).refreshUser();
+
   }
 
   @override

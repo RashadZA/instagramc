@@ -13,6 +13,13 @@ class AuthMethods{
   final UserModel _userModel = UserModel();
   dynamic _signUp;
 
+  Future<UserModel> getUserDetails() async {
+    User _currentUser = _auth.currentUser!;
+    DocumentSnapshot snap = await FirebaseFirestore.instance.collection("users").doc(_currentUser.uid).get();
+
+    return UserModel.fromSnapshotToModel(snap);
+
+  }
 
   Future<String> registrationInFirebase({
     required String userName,

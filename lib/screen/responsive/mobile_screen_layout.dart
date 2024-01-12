@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagramc/core/server/auth_methods.dart';
@@ -19,10 +18,6 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   void initState() {
     super.initState();
     pageController = PageController();
-  }
-
-  void getUserDetails() async {
-    // DocumentSnapshot snap = await FirebaseFirestore.instance.collection()
   }
 
   @override
