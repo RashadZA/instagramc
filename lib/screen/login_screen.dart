@@ -1,14 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:instagramc/core/responsive/mobile_screen_layout.dart';
-import 'package:instagramc/core/responsive/responsive_layout.dart';
-import 'package:instagramc/core/responsive/web_screen_layout.dart';
 import 'package:instagramc/core/server/auth_methods.dart';
 import 'package:instagramc/core/utils/design_utils.dart';
 import 'package:instagramc/core/widgets/core_flat_button.dart';
 import 'package:instagramc/core/widgets/text_field_input.dart';
-import 'package:instagramc/feature/startUp/presentation/screen/signup_screen.dart';
+import 'package:instagramc/screen/responsive/mobile_screen_layout.dart';
+import 'package:instagramc/screen/responsive/responsive_layout.dart';
+import 'package:instagramc/screen/responsive/web_screen_layout.dart';
+import 'package:instagramc/screen/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

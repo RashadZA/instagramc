@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:instagramc/core/server/file_upload_in_firebase.dart';
 import 'package:instagramc/core/server/user_shared_preference.dart';
 import 'package:instagramc/core/utils/design_utils.dart';
-import 'package:instagramc/core/widgets/user_model.dart';
+import 'package:instagramc/core/models/user_model.dart';
 
 class AuthMethods{
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
