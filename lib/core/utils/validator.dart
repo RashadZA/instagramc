@@ -3,7 +3,7 @@ part of 'design_utils.dart';
 class AuthValidator {
 
   static String? nameValidator(String? value) {
-    if (value?.trim().isEmpty ?? true) return "required!";
+    if (value?.trim().isEmpty ?? true) return "Name required!";
 
     if (value != null && !RegExp(r'^[a-z A-Z]+$').hasMatch(value.trim())) {
       return "Invalid Name!";
@@ -12,7 +12,7 @@ class AuthValidator {
   }
 
   static String? phoneValidator(String? value) {
-    if (value?.trim().isEmpty ?? true) return "required!";
+    if (value?.trim().isEmpty ?? true) return "Phone required!";
     if (value != null && value.length != 11) {
       return "Phone number must be of exact 11 digits!";
     }
@@ -23,7 +23,7 @@ class AuthValidator {
   }
 
   static String? emailValidator(String? value) {
-    if (value?.trim().isEmpty ?? true) return "required!";
+    if (value?.trim().isEmpty ?? true) return "Email required!";
 
     if (value != null && !ValidateUtils.isEmail(value.trim())) {
       return "Invalid Email Address!";
@@ -42,7 +42,7 @@ class AuthValidator {
   }
 
   static String? passwordValidator(String? value) {
-    if (value?.trim().isEmpty ?? true) return "required!";
+    if (value?.trim().isEmpty ?? true) return "Password required!";
 
     if (value != null && value.trim().length < 6) {
       return "Password must contain at least 6 characters";
@@ -52,7 +52,7 @@ class AuthValidator {
   }
 
   static String? urlValidator(String? value) {
-    if (value?.trim().isEmpty ?? true) return "required!";
+    if (value?.trim().isEmpty ?? true) return "URL required!";
 
     if (value != null && !ValidateUtils.isURL(value.trim())) {
       return "Invalid URL";

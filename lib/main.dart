@@ -1,10 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:instagramc/core/responsive/mobile_screen_layout.dart';
 import 'package:instagramc/core/responsive/responsive_layout.dart';
 import 'package:instagramc/core/responsive/web_screen_layout.dart';
 import 'package:instagramc/core/utils/design_utils.dart';
-import 'package:instagramc/feature/startUp/screen/login_screen.dart';
+import 'package:instagramc/feature/startUp/presentation/screen/login_screen.dart';
 
 import 'core/server/firebase_options.dart';
 
@@ -28,11 +29,32 @@ class MyApp extends StatelessWidget {
       title: 'Instagram Clone',
       theme: ThemeData.dark()
           .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
-      // home: const ResponsiveLayout(
-      //   mobileScreenLayout: MobileScreenLayout(),
-      //   webScreenLayout: WebScreenLayout(),
-      // ),
-      home: LoginScreen(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot){
+          debugPrint("SnapShot : ${snapshot.data}");
+          if(snapshot.connectionState == ConnectionState.active){
+            if(snapshot.hasData){
+              return const ResponsiveLayout(
+                mobileScreenLayout: MobileScreenLayout(),
+                webScreenLayout: WebScreenLayout(),
+              );
+            }else if(snapshot.hasError){
+              return Center(
+                child: Text("${snapshot.hasError}"),
+              );
+            }else{
+              return const LoginScreen();
+            }
+          }else if(snapshot.connectionState == ConnectionState.waiting){
+            return  Center(
+              child: defaultLoader().defaultContainer(),
+            );
+          }else{
+            return const LoginScreen();
+          }
+        },
+      ),
     );
   }
 }

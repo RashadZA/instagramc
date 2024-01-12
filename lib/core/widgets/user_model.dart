@@ -1,27 +1,35 @@
 class UserModel {
   String? uid;
+  String? userImageURL;
   String? email;
-  String? firstName;
-  String? secondName;
-  String? mobileNumber;
+  String? userName;
+  String? userBio;
   bool? signIn;
+  List? followers;
+  List? following;
 
   UserModel({
     this.uid,
+    this.userImageURL,
     this.email,
-    this.firstName,
-    this.secondName,
-    this.mobileNumber,
+    this.userName,
+    this.userBio,
+    this.signIn,
+    this.followers,
+    this.following,
   });
 
   //receiving data from server
   factory UserModel.fromMap(map) {
     return UserModel(
       uid: map['uid'],
+      userImageURL: map['userImageURL'],
       email: map['email'],
-      firstName: map['firstName'],
-      secondName: map['secondName'],
-      mobileNumber: map['mobileNumber'],
+      userName: map['userName'],
+      userBio: map['userBio'],
+      signIn: map['signIn'],
+      followers: map['followers'],
+      following: map['following'],
     );
   }
 
@@ -29,10 +37,13 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,
+      'userImageURL': userImageURL,
       'email': email,
-      'firstName': firstName,
-      'secondName': secondName,
-      'mobileNumber': mobileNumber,
+      'userName': userName,
+      'userBio': userBio,
+      'signIn': signIn,
+      'followers': followers,
+      'following': following,
     };
   }
 }

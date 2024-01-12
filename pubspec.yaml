@@ -25,12 +25,18 @@ dependencies:
   # For Image or Icon Showing
   flutter_svg: ^2.0.9
 
+  # Pick image from device
+  image_picker: ^1.0.6
+
+  # For save data
+  shared_preferences: ^2.2.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
-
+ 
 flutter:
 
   uses-material-design: true

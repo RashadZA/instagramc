@@ -7,6 +7,24 @@ bool isNullEmptyOrFalse(dynamic o) {
   return o == null || o == false || o == "";
 }
 
+// for picking up image from gallery
+pickImage(ImageSource source) async {
+  final ImagePicker imagePicker = ImagePicker();
+  XFile? file = await imagePicker.pickImage(source: source);
+  if (file != null) {
+    return await file.readAsBytes();
+  }
+}
+
+// for displaying snackbars
+showSnackBar(BuildContext context, String text) {
+  return ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(text),
+    ),
+  );
+}
+
 extension WidgetExtension on Widget {
   List<BoxShadow> get containerShadow => const [
     BoxShadow(
@@ -34,7 +52,7 @@ extension WidgetExtension on Widget {
       Container(
         decoration: BoxDecoration(
           boxShadow: containerShadow,
-          color: backgroundColor ?? white,
+          color: backgroundColor ?? primaryColor,
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         padding: EdgeInsets.symmetric(horizontal: hP, vertical: vP),
@@ -43,7 +61,7 @@ extension WidgetExtension on Widget {
       );
 
   Widget defaultLoader({Color? color}) =>
-      Center(child: CupertinoActivityIndicator(color: color ?? white));
+      Center(child: CupertinoActivityIndicator(color: color ?? blueColor));
 }
 
 // extension StringExtension on String {
