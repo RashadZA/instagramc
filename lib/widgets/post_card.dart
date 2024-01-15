@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:instagramc/core/models/user_model.dart';
+import 'package:instagramc/core/server/firestore_methods.dart';
 import 'package:instagramc/core/utils/design_utils.dart';
 import 'package:instagramc/provider/user_provider.dart';
+import 'package:instagramc/screen/comments_screen.dart';
+import 'package:instagramc/widgets/like_animation.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class PostCard extends StatefulWidget {
   final snap;
@@ -23,36 +27,19 @@ class _PostCardState extends State<PostCard> {
   @override
   void initState() {
     super.initState();
-    fetchCommentLen();
   }
 
-  fetchCommentLen() async {
+
+  deletePost(String postId) async {
     try {
-      QuerySnapshot snap = await FirebaseFirestore.instance
-          .collection('posts')
-          .doc(widget.snap['postId'])
-          .collection('comments')
-          .get();
-      commentLen = snap.docs.length;
+      await FireStoreMethods().deletePost(postId);
     } catch (err) {
       showSnackBar(
         context,
         err.toString(),
       );
     }
-    setState(() {});
   }
-
-  // deletePost(String postId) async {
-  //   try {
-  //     await FireStoreMethods().deletePost(postId);
-  //   } catch (err) {
-  //     showSnackBar(
-  //       context,
-  //       err.toString(),
-  //     );
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -130,10 +117,10 @@ class _PostCardState extends State<PostCard> {
                                       child: Text(e),
                                     ),
                                     onTap: () {
-                                      // deletePost(
-                                      //   widget.snap['postId']
-                                      //       .toString(),
-                                      // );
+                                      deletePost(
+                                        widget.snap['postId']
+                                            .toString(),
+                                      );
                                       // remove the dialog box
                                       Navigator.of(context).pop();
                                     }),
@@ -149,14 +136,15 @@ class _PostCardState extends State<PostCard> {
               ],
             ),
           ),
+
           // IMAGE SECTION OF THE POST
           GestureDetector(
             onDoubleTap: () {
-              // FireStoreMethods().likePost(
-              //   widget.snap['postId'].toString(),
-              //   user.uid,
-              //   widget.snap['likes'],
-              // );
+              FireStoreMethods().likePost(
+                widget.snap['postId'].toString(),
+                "${user.uid}",
+                widget.snap['likes'],
+              );
               setState(() {
                 isLikeAnimating = true;
               });
@@ -172,77 +160,79 @@ class _PostCardState extends State<PostCard> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                // AnimatedOpacity(
-                //   duration: const Duration(milliseconds: 200),
-                //   opacity: isLikeAnimating ? 1 : 0,
-                //   child: LikeAnimation(
-                //     isAnimating: isLikeAnimating,
-                //     duration: const Duration(
-                //       milliseconds: 400,
-                //     ),
-                //     onEnd: () {
-                //       setState(() {
-                //         isLikeAnimating = false;
-                //       });
-                //     },
-                //     child: const Icon(
-                //       Icons.favorite,
-                //       color: Colors.white,
-                //       size: 100,
-                //     ),
-                //   ),
-                // ),
+                AnimatedOpacity(
+                  duration: const Duration(milliseconds: 200),
+                  opacity: isLikeAnimating ? 1 : 0,
+                  child: LikeAnimation(
+                    isAnimating: isLikeAnimating,
+                    duration: const Duration(
+                      milliseconds: 400,
+                    ),
+                    onEnd: () {
+                      setState(() {
+                        isLikeAnimating = false;
+                      });
+                    },
+                    child: const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                      size: 100,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
+
           // LIKE, COMMENT SECTION OF THE POST
-          // Row(
-          //   children: <Widget>[
-          //     LikeAnimation(
-          //       isAnimating: widget.snap['likes'].contains(user.uid),
-          //       smallLike: true,
-          //       child: IconButton(
-          //         icon: widget.snap['likes'].contains(user.uid)
-          //             ? const Icon(
-          //           Icons.favorite,
-          //           color: Colors.red,
-          //         )
-          //             : const Icon(
-          //           Icons.favorite_border,
-          //         ),
-          //         onPressed: () => FireStoreMethods().likePost(
-          //           widget.snap['postId'].toString(),
-          //           user.uid,
-          //           widget.snap['likes'],
-          //         ),
-          //       ),
-          //     ),
-          //     IconButton(
-          //       icon: const Icon(
-          //         Icons.comment_outlined,
-          //       ),
-          //       onPressed: () => Navigator.of(context).push(
-          //         MaterialPageRoute(
-          //           builder: (context) => CommentsScreen(
-          //             postId: widget.snap['postId'].toString(),
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //     IconButton(
-          //         icon: const Icon(
-          //           Icons.send,
-          //         ),
-          //         onPressed: () {}),
-          //     Expanded(
-          //         child: Align(
-          //           alignment: Alignment.bottomRight,
-          //           child: IconButton(
-          //               icon: const Icon(Icons.bookmark_border), onPressed: () {}),
-          //         ))
-          //   ],
-          // ),
-          //DESCRIPTION AND NUMBER OF COMMENTS
+          Row(
+            children: <Widget>[
+              LikeAnimation(
+                isAnimating: widget.snap['likes'].contains(user.uid),
+                smallLike: true,
+                child: IconButton(
+                  icon: widget.snap['likes'].contains(user.uid)
+                      ? const Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                  )
+                      : const Icon(
+                    Icons.favorite_border,
+                  ),
+                  onPressed: () => FireStoreMethods().likePost(
+                    widget.snap['postId'].toString(),
+                    "${user.uid}",
+                    widget.snap['likes'],
+                  ),
+                ),
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.comment_outlined,
+                ),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => CommentsScreen(
+                      postId: widget.snap['postId'].toString(),
+                    ),
+                  ),
+                ),
+              ),
+              IconButton(
+                  icon: const Icon(
+                    Icons.send,
+                  ),
+                  onPressed: () {}),
+              Expanded(
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: IconButton(
+                        icon: const Icon(Icons.bookmark_border), onPressed: () {}),
+                  ))
+            ],
+          ),
+
+          // DESCRIPTION AND NUMBER OF COMMENTS
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
@@ -281,30 +271,39 @@ class _PostCardState extends State<PostCard> {
                   ),
                 ),
                 InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: Text(
-                      'View all $commentLen comments',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: secondaryColor,
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => CommentsScreen(
+                        postId: widget.snap['postId'].toString(),
                       ),
                     ),
                   ),
-                  onTap: (){},
-                  // onTap: () => Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => CommentsScreen(
-                  //       postId: widget.snap['postId'].toString(),
-                  //     ),
-                  //   ),
-                  // ),
+                  child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('posts')
+                        .doc(widget.snap['postId'])
+                        .collection('comments')
+                        .snapshots(),
+                    builder: (context,
+                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+                      return Container(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Text(
+                          'View all ${snapshot.connectionState == ConnectionState.waiting ? " " : snapshot.data!.docs.length} comments',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: secondaryColor,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
-                    "${widget.snap['datePublished']}",
-                    // DateFormat.yMMMd().format(widget.snap['datePublished'].toDate()),
+                    // "${widget.snap['datePublished']}",
+                    DateFormat.yMMMd().format(widget.snap['datePublished'].toDate()),
                     style: const TextStyle(
                       color: secondaryColor,
                     ),

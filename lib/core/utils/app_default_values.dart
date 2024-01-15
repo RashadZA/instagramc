@@ -3,8 +3,8 @@ part of 'design_utils.dart';
 const webScreenSize = 600;
 
 List<Widget> homeScreenItems = [
-  const Text('Feed Screen'),
-  const Text('Search Screen'),
+  const FeedScreen(),
+  const Text('Profile Screen'),
   const AddPostScreen(),
   const Text('notifications'),
   const Text('Profile Screen'),
