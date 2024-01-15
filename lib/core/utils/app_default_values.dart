@@ -2,15 +2,13 @@ part of 'design_utils.dart';
 
 const webScreenSize = 600;
 
-// List<Widget> homeScreenItems = [
-//   const FeedScreen(),
-//   const SearchScreen(),
-//   const AddPostScreen(),
-//   const Text('notifications'),
-//   ProfileScreen(
-//     uid: FirebaseAuth.instance.currentUser!.uid,
-//   ),
-// ];
+List<Widget> homeScreenItems = [
+  const Text('Feed Screen'),
+  const Text('Search Screen'),
+  const AddPostScreen(),
+  const Text('notifications'),
+  const Text('Profile Screen'),
+];
 
 const double defaultPadding = 10;
 const double defaultPadding1 = 15;

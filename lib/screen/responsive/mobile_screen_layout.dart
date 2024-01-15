@@ -42,19 +42,12 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: primaryColor,
-        body: Center(
-          child: InkWell(
-            onTap: () async {
-              await AuthMethods().signOut();
-            },
-            child: const Text("Mobile View"),
-          ),
+        body: PageView(
+          controller: pageController,
+          onPageChanged: onPageChanged,
+          physics: const NeverScrollableScrollPhysics(),
+          children: homeScreenItems,
         ),
-        // body: PageView(
-        //   controller: pageController,
-        //   onPageChanged: onPageChanged,
-        //   children: homeScreenItems,
-        // ),
         bottomNavigationBar: CupertinoTabBar(
           backgroundColor: mobileBackgroundColor,
           items: <BottomNavigationBarItem>[

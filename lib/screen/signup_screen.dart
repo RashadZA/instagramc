@@ -34,6 +34,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   final signUpFormKey = GlobalKey<FormState>();
 
+  @override
+  void initState() {
+    super.initState();
+    defaultUser();
+  }
+
+  void defaultUser() {
+    setState(() {
+      _usernameController.text = "Rashaduzzaman Ananda";
+      _bioController.text = "Flutter Developer";
+      _emailController.text = "rashad@gmail.com";
+      _passwordController.text = "123456";
+      _confirmPasswordController.text = "123456";
+    });
+  }
+
   void signUpUser() async {
     // set loading to true
     setState(() {
@@ -78,8 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           }
         }
       }
-    } else if (signUpFormKey.currentState!.validate() &&
-        _image == null) {
+    } else if (signUpFormKey.currentState!.validate() && _image == null) {
       showSnackBar(context, "Select Profile Picture");
       setState(() {
         _isLoading = false;

@@ -41,8 +41,8 @@ class AuthMethods{
     await FileUploadInFirebase().uploadImageToStorage(profilePics, file, false);
     if (_signUp.user.uid != null) {
       _userModel.email = _signUp.user.email;
-      _userModel.userImageURL = _signUp.user.uid;
-      _userModel.uid = photoUrl;
+      _userModel.uid = _signUp.user.uid;
+      _userModel.userImageURL = photoUrl;
       _userModel.userName = userName;
       _userModel.userBio = userBio;
       _userModel.signIn = true;

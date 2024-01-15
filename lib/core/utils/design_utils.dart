@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagramc/core/utils/validator_utils.dart';
+import 'package:instagramc/screen/add_post_screen.dart';
 
 part 'app_assets.dart';
 part 'app_colors.dart';
