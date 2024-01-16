@@ -4,10 +4,11 @@ const webScreenSize = 600;
 
 List<Widget> homeScreenItems = [
   const FeedScreen(),
-  const Text('Profile Screen'),
+  const SearchScreen(),
   const AddPostScreen(),
-  const Text('notifications'),
-  const Text('Profile Screen'),
+  ProfileScreen(
+    uid: FirebaseAuth.instance.currentUser!.uid,
+  ),
 ];
 
 const double defaultPadding = 10;

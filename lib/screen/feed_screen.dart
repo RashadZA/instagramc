@@ -41,26 +41,28 @@ class _FeedScreenState extends State<FeedScreen> {
           ],
         ),
         body: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+          stream: FirebaseFirestore.instance.collection('posts').orderBy("datePublished", descending: true).snapshots(),
           builder: (context,
               AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return  Center(child: SizedBox(height: MediaQuery.of(context).size.height * 0.3,width: MediaQuery.of(context).size.width *0.5,).defaultLoader(),);
+            }else if(!snapshot.hasData) {
+            return  Center(child: SizedBox(height: MediaQuery.of(context).size.height * 0.3,width: MediaQuery.of(context).size.width *0.5,).defaultLoader(),);
+            }else{
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (ctx, index) => Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: width > webScreenSize ? 15 : 0,
+                    vertical: width > webScreenSize ? 15 : 0,
+                  ),
+                  child: PostCard(
+                    snap: snapshot.data!.docs[index].data(),
+                  ),
+                ),
               );
             }
-            return ListView.builder(
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: (ctx, index) => Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: width > webScreenSize ? width * 0.3 : 0,
-                  vertical: width > webScreenSize ? 15 : 0,
-                ),
-                child: PostCard(
-                  snap: snapshot.data!.docs[index].data(),
-                ),
-              ),
-            );
+
           },
         ),
       ),

@@ -223,12 +223,6 @@ class _PostCardState extends State<PostCard> {
                     Icons.send,
                   ),
                   onPressed: () {}),
-              Expanded(
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: IconButton(
-                        icon: const Icon(Icons.bookmark_border), onPressed: () {}),
-                  ))
             ],
           ),
 
@@ -289,7 +283,7 @@ class _PostCardState extends State<PostCard> {
                       return Container(
                         padding: const EdgeInsets.symmetric(vertical: 4),
                         child: Text(
-                          'View all ${snapshot.connectionState == ConnectionState.waiting ? " " : snapshot.data!.docs.length} comments',
+                          'View all ${snapshot.data?.docs.length} comments',
                           style: const TextStyle(
                             fontSize: 16,
                             color: secondaryColor,

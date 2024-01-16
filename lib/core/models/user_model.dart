@@ -63,4 +63,17 @@ class UserModel {
       following: snapshot["following"],
     );
   }
+  factory UserModel.defaultModel() {
+
+    return UserModel(
+      userName: " ",
+      uid: " ",
+      email: " ",
+      userImageURL: " ",
+      userBio: " ",
+      signIn: false,
+      followers: [],
+      following: [],
+    );
+  }
 }
