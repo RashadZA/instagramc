@@ -1,16 +1,50 @@
-# instagramc
+# Instagram Clone
+I am trying to clone Instagram, but not all features are cloned.
 
-A new Flutter project.
+# Contents:
+* Just basic feature is implemented
+* For database used firebase
 
-## Getting Started
+# Feature
+* Sign In and Sign Out with Firebase Auth
+* Feed Screen
+* Search Screen
+* Add Post Screen but only image can be posted by user
+* Profile Screen
 
-This project is a starting point for a Flutter application.
+# Dependencies:
+* firebase_storage
+* firebase_messaging
+* firebase_auth
+* firebase_core
+* cloud_firestore
+* flutter_svg
+* image_picker
+* provider
+* flutter_staggered_grid_view: ^0.7.0
+* uuid
+* intl
 
-A few resources to get you started if this is your first Flutter project:
+# The Project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+You can run this project:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Direct on Android Studio Emulator by this [link](https://github.com/RashadZA/instagramc.git)
+2. Physical Device. [Apk_link](https://drive.google.com/file/d/1NL0nxzupDFtwttNQZaWD7zBN1lD-VDAP/view?usp=sharing)
+
+# How to Use the Project:
+* Just install APK and explore features.
+
+## APP Screenshots:
+<img src="screenShots/01.png">
+<img src="screenShots/02.png">
+<img src="screenShots/03.png">
+<img src="screenShots/04.png">
+<img src="screenShots/05.png">
+<img src="screenShots/06.png">
+<img src="screenShots/07.png">
+<img src="screenShots/08.png">
+<img src="screenShots/09.png">
+<img src="screenShots/10.png">
+<img src="screenShots/11.png">
+<img src="screenShots/12.png">

@@ -125,6 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     )
         : Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: mobileBackgroundColor,
         title: Text(
           userData['userName'],

@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:instagramc/core/server/file_upload_in_firebase.dart';
-import 'package:instagramc/core/server/user_shared_preference.dart';
 import 'package:instagramc/core/utils/design_utils.dart';
 import 'package:instagramc/core/models/user_model.dart';
 
@@ -52,7 +51,6 @@ class AuthMethods{
           .collection("users")
           .doc(_signUp.user!.uid)
           .set(_userModel.toMap());
-      await SaveUserDetailsLocally().setUserDetails(uid: _signUp.user.uid, email: _signUp.user.email ?? "", );
       return success;
     } else {
       return _signUp.toString();
@@ -73,7 +71,6 @@ class AuthMethods{
       debugPrint("UserCredential While Login : ${userCredential.user!}");
       debugPrint("User UID While Login : ${userCredential.user!.uid}");
       debugPrint("User Email While Login : ${userCredential.user!.email}");
-        await SaveUserDetailsLocally().setUserDetails(uid: userCredential.user?.uid ?? "", email: userCredential.user?.email ?? "", );
         return success;
     } catch (err) {
       return err.toString();
@@ -82,7 +79,6 @@ class AuthMethods{
 
   Future<void> signOut() async {
     await _auth.signOut();
-    await SaveUserDetailsLocally().removeUserDetails();
   }
 
 }

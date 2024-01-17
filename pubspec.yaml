@@ -28,9 +28,6 @@ dependencies:
   # Pick image from device
   image_picker: ^1.0.6
 
-  # For save data
-  shared_preferences: ^2.2.2
-
   # For State Management
   provider: ^6.1.1
 

@@ -25,20 +25,12 @@ class _FeedScreenState extends State<FeedScreen> {
             : AppBar(
           backgroundColor: mobileBackgroundColor,
           centerTitle: false,
+          automaticallyImplyLeading: false,
           title: SvgPicture.asset(
             AppLogos.instagram,
             colorFilter:
             const ColorFilter.mode(primaryColor, BlendMode.srcIn),
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.messenger_outline,
-                color: primaryColor,
-              ),
-              onPressed: () {},
-            ),
-          ],
         ),
         body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('posts').orderBy("datePublished", descending: true).snapshots(),
